@@ -40,15 +40,15 @@ class BackendManager:
 
         return song_id
 
-    def commit_new_metadata(self, object: Song):
+    def commit_new_metadata(self, object: Song, old_data: dict):
         """ commit new metadata to db """
        
         session = self._db_session()
 
         existing_song = session.query(Song).filter(
-            Song.title == object.title,
-            Song.artist == object.artist,
-            Song.album == object.album).first()
+            Song.title == old_data['title'],
+            Song.artist == old_data['artist'],
+            Song.album == old_data['album']).first()
         
         if existing_song is None:
             raise ValueError(f"Song {object.title} does not exist")

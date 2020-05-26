@@ -140,7 +140,7 @@ def edit_metadata():
         if new_data['genre'] is not "":
             song.genre = new_data['genre']
 
-        backend_manager.commit_new_metadata(song)
+        backend_manager.commit_new_metadata(song, old_data)
         response = app.response_class(
             status=200
         )
