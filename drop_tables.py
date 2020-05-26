@@ -1,11 +1,19 @@
 import sqlite3
 
-conn = sqlite3.connect('student_db.sqlite')
+conn = sqlite3.connect('backend.sqlite')
 
 c = conn.cursor()
 c.execute('''
-          DROP TABLE student_tbl
+          DROP TABLE songs
           ''')
 
 conn.commit()
+
+c.execute('''
+          DROP TABLE playlists
+          ''')
+
+conn.commit()
+
+
 conn.close()
